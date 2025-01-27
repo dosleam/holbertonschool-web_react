@@ -41,3 +41,35 @@ interface Teacher {
   // location: "London"
   // numberOfReports: 17
   
+  interface StudentClassConstructor {
+    firstName: string;
+    lastName: string;
+  }
+  
+  interface StudentClassInterface {
+    workOnHomework(): string;
+    displayName(): string;
+  }
+  
+  class StudentClass implements StudentClassInterface {
+    firstName: string;
+    lastName: string;
+  
+    constructor({ firstName, lastName }: StudentClassConstructor) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+    }
+  
+    workOnHomework(): string {
+      return "Currently working";
+    }
+  
+    displayName(): string {
+      return this.firstName;
+    }
+  }
+  
+  // Exemple d'utilisation
+  const student = new StudentClass({ firstName: "Jane", lastName: "Doe" });
+  console.log(student.displayName()); // Jane
+  console.log(student.workOnHomework()); // Currently working
