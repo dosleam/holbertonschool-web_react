@@ -11,6 +11,17 @@ interface Teacher {
     numberOfReports: number; // Attribut requis
   }
   
+  interface printTeacherFunction {
+    (firstName: string, lastName: string): string;
+  }
+  
+  const printTeacher: printTeacherFunction = (firstName, lastName) => {
+    return `${firstName.charAt(0)}. ${lastName}`;
+  };
+  
+  // Exemple d'utilisation
+  console.log(printTeacher("John", "Doe")); // J. Doe
+  
   // Exemple d'utilisation de l'interface Directors
   const director1: Directors = {
     firstName: 'John',
