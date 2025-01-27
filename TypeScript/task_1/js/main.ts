@@ -7,22 +7,26 @@ interface Teacher {
     [key: string]: any; // Signature d'index pour des attributs supplémentaires
   }
   
-  // Exemple d'utilisation de l'interface Teacher
-  const teacher3: Teacher = {
+  interface Directors extends Teacher {
+    numberOfReports: number; // Attribut requis
+  }
+  
+  // Exemple d'utilisation de l'interface Directors
+  const director1: Directors = {
     firstName: 'John',
     lastName: 'Doe',
-    fullTimeEmployee: false,
     location: 'London',
-    contract: false, // Propriété additionnelle
+    fullTimeEmployee: true,
+    numberOfReports: 17,
   };
   
-  console.log(teacher3);
+  console.log(director1);
   
   // Affichage attendu :
   // Object
-  // contract: false
   // firstName: "John"
-  // fullTimeEmployee: false
+  // fullTimeEmployee: true
   // lastName: "Doe"
   // location: "London"
+  // numberOfReports: 17
   
