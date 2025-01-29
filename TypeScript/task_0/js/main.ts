@@ -1,63 +1,67 @@
+// Définition de l'interface Student
 interface Student {
-    firstName: string;
-    lastName: string;
-    age: number;
-    location: string;
-  }
-  
-  // Création de deux étudiants
-  const student1: Student = {
-    firstName: "Jean",
-    lastName: "Dupont",
-    age: 21,
-    location: "Paris"
-  };
-  
-  const student2: Student = {
-    firstName: "Marie",
-    lastName: "Curie",
-    age: 22,
-    location: "Lyon"
-  };
-  
-  // Liste des étudiants
-  const studentsList: Student[] = [student1, student2];
-  
-  // Création du tableau HTML
-  document.addEventListener("DOMContentLoaded", () => {
-    const table = document.createElement("table");
-    const tableHead = document.createElement("thead");
-    const tableBody = document.createElement("tbody");
-  
-    // Ajouter les en-têtes du tableau
-    const headerRow = document.createElement("tr");
-    const headers = ["First Name", "Location"];
-  
-    headers.forEach(headerText => {
-      const th = document.createElement("th");
-      th.textContent = headerText;
-      headerRow.appendChild(th);
-    });
-  
-    tableHead.appendChild(headerRow);
-  
-    // Ajouter les lignes pour chaque étudiant
-    studentsList.forEach(student => {
-      const row = document.createElement("tr");
-  
-      const firstNameCell = document.createElement("td");
+  firstName: string;
+  lastName: string;
+  age: number;
+  location: string;
+}
+
+// Création des deux étudiants
+const student1: Student = {
+  firstName: "Jean",
+  lastName: "Dupont",
+  age: 20,
+  location: "Paris"
+};
+
+const student2: Student = {
+  firstName: "Marie",
+  lastName: "Martin",
+  age: 22,
+  location: "Lyon"
+};
+
+// Création du tableau d'étudiants
+const studentsList: Student[] = [student1, student2];
+
+// Fonction pour créer et afficher la table
+function renderTable(): void {
+  // Création des éléments HTML
+  const body: HTMLBodyElement = document.getElementsByTagName("body")[0];
+  const table: HTMLTableElement = document.createElement("table");
+  const thead: HTMLTableSectionElement = document.createElement("thead");
+  const tbody: HTMLTableSectionElement = document.createElement("tbody");
+
+  // Création de l'en-tête du tableau
+  const headerRow: HTMLTableRowElement = document.createElement("tr");
+  const firstNameHeader: HTMLTableCellElement = document.createElement("th");
+  const locationHeader: HTMLTableCellElement = document.createElement("th");
+
+  firstNameHeader.textContent = "Prénom";
+  locationHeader.textContent = "Localisation";
+
+  headerRow.appendChild(firstNameHeader);
+  headerRow.appendChild(locationHeader);
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  // Ajout des données des étudiants
+  studentsList.forEach((student: Student) => {
+      const row: HTMLTableRowElement = document.createElement("tr");
+      const firstNameCell: HTMLTableCellElement = document.createElement("td");
+      const locationCell: HTMLTableCellElement = document.createElement("td");
+
       firstNameCell.textContent = student.firstName;
-  
-      const locationCell = document.createElement("td");
       locationCell.textContent = student.location;
-  
+
       row.appendChild(firstNameCell);
       row.appendChild(locationCell);
-      tableBody.appendChild(row);
-    });
-  
-    table.appendChild(tableHead);
-    table.appendChild(tableBody);
-    document.body.appendChild(table);
+      tbody.appendChild(row);
   });
-  
+
+  table.appendChild(tbody);
+  body.appendChild(table);
+}
+
+// Appel de la fonction quand le document est chargé
+document.addEventListener("DOMContentLoaded", renderTable);
